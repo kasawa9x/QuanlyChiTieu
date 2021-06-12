@@ -11,24 +11,20 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginLeft="5dp"
-        android:src="@drawable/nhs"
+        android:src="@drawable/ptit"
         android:layout_gravity="center"
         android:padding="5dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nguyen Hong Son"
+        android:text="Quản Lý Thu Chi Cá Nhân"
         android:textColor="@color/black"
         android:textStyle="bold"
+        android:textSize="18sp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="15dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="NHS@gmail.com"
-        android:textColor="@color/black"/>
+
 
 </LinearLayout>

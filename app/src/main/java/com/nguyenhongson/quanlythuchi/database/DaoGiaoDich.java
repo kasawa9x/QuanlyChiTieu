@@ -1,4 +1,4 @@
-package com.nguyenhongson.quanlythuchi.dao;
+package com.nguyenhongson.quanlythuchi.database;
 
 import android.content.ContentValues;
 import android.content.Context;

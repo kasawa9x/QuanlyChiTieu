@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -15,7 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.nguyenhongson.quanlythuchi.dao.DaoTaiKhoan;
+import com.nguyenhongson.quanlythuchi.database.DaoTaiKhoan;
 import com.nguyenhongson.quanlythuchi.model.TaikhoanMatKhau;
 
 import java.util.ArrayList;

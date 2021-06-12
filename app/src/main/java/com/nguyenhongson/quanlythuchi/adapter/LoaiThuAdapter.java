@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,9 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nguyenhongson.quanlythuchi.R;
-import com.nguyenhongson.quanlythuchi.dao.DaoGiaoDich;
-import com.nguyenhongson.quanlythuchi.dao.DaoThuChi;
-import com.nguyenhongson.quanlythuchi.model.GiaoDich;
+import com.nguyenhongson.quanlythuchi.database.DaoThuChi;
 import com.nguyenhongson.quanlythuchi.model.ThuChi;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -104,7 +101,6 @@ public class LoaiThuAdapter extends RecyclerView.Adapter<LoaiThuAdapter.ViewHold
                         bottomSheetDialog.dismiss();
                         final Dialog dialog = new Dialog(context);
                         dialog.setContentView(R.layout.them_loai_thuchi);
-                        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
                         Window window = dialog.getWindow();
                         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                         if (dialog != null && dialog.getWindow() != null) {
@@ -153,7 +149,6 @@ public class LoaiThuAdapter extends RecyclerView.Adapter<LoaiThuAdapter.ViewHold
                         final Dialog dialog = new Dialog(context);
                         dialog.setCancelable(false);
                         dialog.setContentView(R.layout.dialog_xoa);
-                        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
                         Window window = dialog.getWindow();
                         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                         if (dialog != null && dialog.getWindow() != null) {

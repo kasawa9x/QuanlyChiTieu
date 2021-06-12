@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -27,8 +26,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nguyenhongson.quanlythuchi.R;
-import com.nguyenhongson.quanlythuchi.dao.DaoGiaoDich;
-import com.nguyenhongson.quanlythuchi.dao.DaoThuChi;
+import com.nguyenhongson.quanlythuchi.database.DaoGiaoDich;
+import com.nguyenhongson.quanlythuchi.database.DaoThuChi;
 import com.nguyenhongson.quanlythuchi.model.GiaoDich;
 import com.nguyenhongson.quanlythuchi.model.ThuChi;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -117,9 +116,9 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.ViewHo
                         (LinearLayout) bottomSheetDialog.findViewById(R.id.bottomSheetContainer)
                 );
                 TextView txtXemchiTiet=bottomSheetView.findViewById(R.id.txt_XemChiTiet);
-                TextView txtSuaKhoanChi=bottomSheetView.findViewById(R.id.txt_SuaThuChi);
+                TextView txtSuaKhoanThu=bottomSheetView.findViewById(R.id.txt_SuaThuChi);
                 TextView txtXoa=bottomSheetView.findViewById(R.id.txt_XoaThuChi);
-                txtSuaKhoanChi.setText("Sửa khoản thu");
+                txtSuaKhoanThu.setText("Sửa khoản thu");
 
                 txtXemchiTiet.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -132,7 +131,6 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.ViewHo
 
                         Dialog dialog = new Dialog(context);
                         dialog.setContentView(R.layout.thong_tin_gd);
-                        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
                         TextView mota, ngay, tien, loai, title;
                         mota = dialog.findViewById(R.id.mota_gd);
                         ngay = dialog.findViewById(R.id.ngay_gd);
@@ -150,7 +148,7 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.ViewHo
 
                     }
                 });
-                txtSuaKhoanChi.setOnClickListener(new View.OnClickListener() {
+                txtSuaKhoanThu.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         bottomSheetDialog.dismiss();
@@ -158,7 +156,6 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.ViewHo
                         final Dialog dialog = new Dialog(context);
                         dialog.setCancelable(false);
                         dialog.setContentView(R.layout.them_khoan_thuchi);
-                        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
                         Window window = dialog.getWindow();
                         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                         if (dialog != null && dialog.getWindow() != null) {
@@ -170,18 +167,17 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.ViewHo
                         final Spinner spLoaiGd = dialog.findViewById(R.id.spLoaiGd);
                         final TextView title = dialog.findViewById(R.id.titleThemKhoan);
                         final Button xoa = dialog.findViewById(R.id.xoaTextGD);
-                        final Button them = dialog.findViewById(R.id.btnThemGD);
+                        final Button sua = dialog.findViewById(R.id.btnThemGD);
                         daoThuChi = new DaoThuChi(context);
                         listTC = daoThuChi.getThuChi(0);
 
                         title.setText("SỬA KHOẢN THU");
-                        them.setText("SỬA");
+                        sua.setText("SỬA");
                         moTaGd.setText(gd.getMoTaGd());
                         ngayGd.setText(String.valueOf(gd.getNgayGd()));
                         tienGd.setText(String.valueOf(gd.getSoTien()));
                         final ArrayAdapter sp = new ArrayAdapter(context, R.layout.spiner, listTC);
                         spLoaiGd.setAdapter(sp);
-//               Toast.makeText(context, daoThuChi.getTen(gd.getMaKhoan()),Toast.LENGTH_SHORT).show();
                         int vitri = -1;
                         for (int i = 0; i < listTC.size(); i++) {
                             if (listTC.get(i).getTenKhoan().equalsIgnoreCase(daoThuChi.getTen(gd.getMaKhoan()))) {
@@ -221,7 +217,7 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.ViewHo
                         });
 
 
-                        them.setOnClickListener(new View.OnClickListener() {
+                        sua.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 String mota = moTaGd.getText().toString();
@@ -266,7 +262,6 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.ViewHo
                         final Dialog dialog = new Dialog(context);
 
                         dialog.setContentView(R.layout.dialog_xoa);
-                        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
                         Window window = dialog.getWindow();
                         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                         if (dialog != null && dialog.getWindow() != null) {

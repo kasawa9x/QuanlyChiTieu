@@ -1,4 +1,4 @@
-package com.nguyenhongson.quanlythuchi.dao;
+package com.nguyenhongson.quanlythuchi.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -38,7 +38,7 @@ public class DaoThuChi {
         return list;
     }
 
-    //Thêm các khoản thu chi
+
     public boolean themTC(ThuChi tc) {
         SQLiteDatabase db = dtb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -51,7 +51,6 @@ public class DaoThuChi {
         return true;
     }
 
-    //Xóa khoản thu chi theo mã, khi xóa khoản thu chi, các dữ liệu bên giao dịch thuộc khoản thu chi cũng phải xóa theo
     public boolean xoaTC(ThuChi tc) {
         SQLiteDatabase db = dtb.getWritableDatabase();
         int r = db.delete("THUCHI", "maKhoan=?", new String[]{String.valueOf(tc.getMaKhoan())});
@@ -62,7 +61,6 @@ public class DaoThuChi {
         return true;
     }
 
-    //Sửa khoản thu chi theo mã thu chi
     public boolean suaTC(ThuChi tc) {
         SQLiteDatabase db = dtb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -75,20 +73,18 @@ public class DaoThuChi {
         return true;
     }
 
-    //lấy toàn bộ ds thu chi
     public ArrayList<ThuChi> getAll() {
         String sql = "SELECT * FROM THUCHI";
         return getTC(sql);
     }
 
-    //show danh sách theo thu hoăc chi
     public ArrayList<ThuChi> getThuChi(int loaiKhoan) {
         String sql = "SELECT * FROM THUCHI WHERE loaiKhoan=?";
         ArrayList<ThuChi> list = getTC(sql, String.valueOf(loaiKhoan));
         return list;
     }
 
-    //Lấy tên theo mã khoản
+
     public String getTen(int maKhoan) {
         String tenKhoan = "";
 

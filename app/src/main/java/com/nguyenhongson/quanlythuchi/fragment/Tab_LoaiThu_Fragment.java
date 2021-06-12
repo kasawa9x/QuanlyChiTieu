@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.clans.fab.FloatingActionButton;
 import com.nguyenhongson.quanlythuchi.R;
 import com.nguyenhongson.quanlythuchi.adapter.LoaiThuAdapter;
-import com.nguyenhongson.quanlythuchi.dao.DaoThuChi;
+import com.nguyenhongson.quanlythuchi.database.DaoThuChi;
 import com.nguyenhongson.quanlythuchi.model.ThuChi;
 
 import java.util.ArrayList;
@@ -69,12 +69,13 @@ public class Tab_LoaiThu_Fragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         view = inflater.inflate(R.layout.fragment_tab__loai_thu_, container, false);
         rcv = view.findViewById(R.id.rcv_LoaiThu);
         addBtn = view.findViewById(R.id.addBtn);
         girdBtn = view.findViewById(R.id.girdBtn);
-        danhsachBtn = view.findViewById(R.id.danhsachBtn);        daoThuChi = new DaoThuChi(getActivity());
+        danhsachBtn = view.findViewById(R.id.danhsachBtn);
+        daoThuChi = new DaoThuChi(getActivity());
 
         list = daoThuChi.getThuChi(0);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -100,7 +101,7 @@ public class Tab_LoaiThu_Fragment extends Fragment {
             }
         });
 
-        // drop item
+
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         rcv.addItemDecoration(dividerItemDecoration);
 
@@ -112,7 +113,7 @@ public class Tab_LoaiThu_Fragment extends Fragment {
                 final Dialog dialog = new Dialog(getContext());
                 dialog.setCancelable(false);
                 dialog.setContentView(R.layout.them_loai_thuchi);
-                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
+//                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
                 Window window = dialog.getWindow();
                 window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 if (dialog != null && dialog.getWindow() != null) {

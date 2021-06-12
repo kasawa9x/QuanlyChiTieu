@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,9 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.nguyenhongson.quanlythuchi.R;
-import com.nguyenhongson.quanlythuchi.dao.DaoGiaoDich;
-import com.nguyenhongson.quanlythuchi.dao.DaoThuChi;
-import com.nguyenhongson.quanlythuchi.model.GiaoDich;
+import com.nguyenhongson.quanlythuchi.database.DaoGiaoDich;
+import com.nguyenhongson.quanlythuchi.database.DaoThuChi;
 import com.nguyenhongson.quanlythuchi.model.ThuChi;
 import java.util.ArrayList;
 
@@ -108,7 +106,6 @@ public class LoaiChiAdapter extends RecyclerView.Adapter<LoaiChiAdapter.ViewHold
                         bottomSheetDialog.dismiss();
                         final Dialog dialog = new Dialog(context);
                         dialog.setContentView(R.layout.them_loai_thuchi);
-                        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
                         Window window = dialog.getWindow();
                         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                         if (dialog != null && dialog.getWindow() != null) {
@@ -134,7 +131,7 @@ public class LoaiChiAdapter extends RecyclerView.Adapter<LoaiChiAdapter.ViewHold
                                     Toast.makeText(context, "Sửa thành công!", Toast.LENGTH_SHORT).show();
                                     dialog.dismiss();
                                 } else {
-                                    Toast.makeText(context, "Thêm thất bại!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "Sửa thất bại!", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -157,7 +154,6 @@ public class LoaiChiAdapter extends RecyclerView.Adapter<LoaiChiAdapter.ViewHold
                         final Dialog dialog = new Dialog(context);
 
                         dialog.setContentView(R.layout.dialog_xoa);
-                        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
                         Window window = dialog.getWindow();
                         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                         if (dialog != null && dialog.getWindow() != null) {
@@ -177,8 +173,6 @@ public class LoaiChiAdapter extends RecyclerView.Adapter<LoaiChiAdapter.ViewHold
                                 if (daoThuChi.xoaTC(tc)) {
                                     txt_Massage.setText("");
                                     progressBar.setVisibility(View.VISIBLE);
-//                            int colorCodeDark = Color.parseColor("#FFFFFF");
-//                            progressBar.setIndeterminateTintList(ColorStateList.valueOf(colorCodeDark));
                                     progressBar.getIndeterminateDrawable().setColorFilter(0xFFFF0000, android.graphics.PorterDuff.Mode.MULTIPLY);
                                     new Handler().postDelayed(new Runnable() {
                                         @Override

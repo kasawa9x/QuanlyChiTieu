@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.nguyenhongson.quanlythuchi.R;
-import com.nguyenhongson.quanlythuchi.dao.DaoGiaoDich;
+import com.nguyenhongson.quanlythuchi.database.DaoGiaoDich;
 import com.nguyenhongson.quanlythuchi.model.GiaoDich;
 
 import java.text.DecimalFormat;

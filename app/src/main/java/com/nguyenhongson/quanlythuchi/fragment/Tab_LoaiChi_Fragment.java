@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.clans.fab.FloatingActionButton;
 import com.nguyenhongson.quanlythuchi.R;
 import com.nguyenhongson.quanlythuchi.adapter.LoaiChiAdapter;
-import com.nguyenhongson.quanlythuchi.dao.DaoThuChi;
+import com.nguyenhongson.quanlythuchi.database.DaoThuChi;
 import com.nguyenhongson.quanlythuchi.model.ThuChi;
 
 import java.util.ArrayList;
@@ -116,7 +116,7 @@ View view;
                 final Dialog dialog = new Dialog(getContext());
                 dialog.setCancelable(false);
                 dialog.setContentView(R.layout.them_loai_thuchi);
-                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
+//                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
                 Window window = dialog.getWindow();
                 window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 if (dialog != null && dialog.getWindow() != null) {

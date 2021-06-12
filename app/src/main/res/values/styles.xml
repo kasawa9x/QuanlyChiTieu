@@ -85,10 +85,10 @@
         <item name="android:background">@color/profileAccentColor</item>
         <item name="android:layout_marginTop">5dp</item>
     </style>
-    <style name="DialogTheme">
-        <item name="android:windowEnterAnimation">@anim/popup</item>
-        <item name="android:windowExitAnimation">@anim/popdown</item>
-    </style>
+<!--    <style name="DialogTheme">-->
+<!--        <item name="android:windowEnterAnimation">@anim/popup</item>-->
+<!--        <item name="android:windowExitAnimation">@anim/popdown</item>-->
+<!--    </style>-->
 <!--    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">-->
 <!--        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>-->
 <!--    </style>-->

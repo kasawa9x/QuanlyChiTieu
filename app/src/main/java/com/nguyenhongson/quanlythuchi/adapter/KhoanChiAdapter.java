@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -28,8 +27,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.nguyenhongson.quanlythuchi.R;
-import com.nguyenhongson.quanlythuchi.dao.DaoGiaoDich;
-import com.nguyenhongson.quanlythuchi.dao.DaoThuChi;
+import com.nguyenhongson.quanlythuchi.database.DaoGiaoDich;
+import com.nguyenhongson.quanlythuchi.database.DaoThuChi;
 import com.nguyenhongson.quanlythuchi.model.GiaoDich;
 import com.nguyenhongson.quanlythuchi.model.ThuChi;
 
@@ -116,12 +115,12 @@ public class KhoanChiAdapter extends RecyclerView.Adapter<KhoanChiAdapter.ViewHo
                         public void onClick(View view) {
                             bottomSheetDialog.dismiss();
                             GiaoDich gd = list.get(position);
-                            //Format dạng tiền
+
                             NumberFormat fm = new DecimalFormat("#,###");
-                            //Hiện thông tin giao dịch khi click vào item
+
                             Dialog dialog = new Dialog(context);
                             dialog.setContentView(R.layout.thong_tin_gd);
-                            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
+//                            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
                             TextView mota, ngay, tien, loai, title;
                             title = dialog.findViewById(R.id.thongtinGD);
                             mota = dialog.findViewById(R.id.mota_gd);
@@ -144,7 +143,7 @@ public class KhoanChiAdapter extends RecyclerView.Adapter<KhoanChiAdapter.ViewHo
                             final Dialog dialog = new Dialog(context);
                             dialog.setCancelable(false);
                             dialog.setContentView(R.layout.them_khoan_thuchi);
-                            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
+//                            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
                             Window window = dialog.getWindow();
                             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                             if (dialog != null && dialog.getWindow() != null) {
@@ -155,12 +154,12 @@ public class KhoanChiAdapter extends RecyclerView.Adapter<KhoanChiAdapter.ViewHo
                             final Spinner spLoaiGd = dialog.findViewById(R.id.spLoaiGd);
                             final TextView title = dialog.findViewById(R.id.titleThemKhoan);
                             final Button xoa = dialog.findViewById(R.id.xoaTextGD);
-                            final Button them = dialog.findViewById(R.id.btnThemGD);
+                            final Button sua = dialog.findViewById(R.id.btnThemGD);
                             daoThuChi = new DaoThuChi(context);
                             listTC = daoThuChi.getThuChi(1);
-                            //Set tiêu đề, text
+
                             title.setText("SỬA KHOẢN CHI");
-                            them.setText("SỬA");
+                            sua.setText("SỬA");
                             moTaGd.setText(gd.getMoTaGd());
                             ngayGd.setText(dfm.format(gd.getNgayGd()));
                             tienGd.setText(String.valueOf(gd.getSoTien()));
@@ -205,7 +204,7 @@ public class KhoanChiAdapter extends RecyclerView.Adapter<KhoanChiAdapter.ViewHo
                             });
 
 
-                            them.setOnClickListener(new View.OnClickListener() {
+                            sua.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     String mota = moTaGd.getText().toString();
@@ -213,7 +212,7 @@ public class KhoanChiAdapter extends RecyclerView.Adapter<KhoanChiAdapter.ViewHo
                                     String tien = tienGd.getText().toString();
                                     ThuChi tc = (ThuChi) spLoaiGd.getSelectedItem();
                                     int ma = tc.getMaKhoan();
-                                    //Check lỗi
+
                                     if (mota.isEmpty() && ngay.isEmpty() && tien.isEmpty()) {
                                         Toast.makeText(context, "Các trường không được để trống!", Toast.LENGTH_SHORT).show();
                                     } else {
@@ -249,7 +248,7 @@ public class KhoanChiAdapter extends RecyclerView.Adapter<KhoanChiAdapter.ViewHo
                             bottomSheetDialog.dismiss();
                             final Dialog dialog = new Dialog(context);
                             dialog.setContentView(R.layout.dialog_xoa);
-                            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
+//                            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
                             Window window = dialog.getWindow();
                             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                             if (dialog != null && dialog.getWindow() != null) {
